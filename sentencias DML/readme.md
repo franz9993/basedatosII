@@ -8,8 +8,8 @@
 ##### **SYSDATETIME (Transact-SQL)**
 SYSDATETIME y SYSUTCDATETIME tienen más precisión de fracciones de segundo que GETDATE y GETUTCDATE. SYSDATETIMEOFFSET incluye el ajuste de zona horaria del sistema. SYSDATETIME, SYSUTCDATETIME y SYSDATETIMEOFFSET pueden asignarse a una variable de cualquier tipo de fecha y hora.
 ###### **A.Obtener la fecha y hora actuales del sistema**
-###### SELECT SYSDATETIME()
-###### ,SYSDATETIMEOFFSET()
+SELECT SYSDATETIME()
+,SYSDATETIMEOFFSET()
 ###### ,SYSUTCDATETIME()
 ###### ,CURRENT_TIMESTAMP
 ###### ,GETDATE()
@@ -29,4 +29,8 @@ SYSDATETIME y SYSUTCDATETIME tienen más precisión de fracciones de segundo que
 ###### ,CONVERT (date, CURRENT_TIMESTAMP)
 ###### ,CONVERT (date, GETDATE())
 ###### ,CONVERT (date, GETUTCDATE());
-###### **Todo esto nos retotnaria una fecha similar: 2007-04-30**
+###### **Todo esto nos retornaria una fecha similar: 2007-04-30**
+
+#### **SYSDATETIMEOFFSET (Transact-SQL)**
+Devuelve un valor datetimeoffset(7) que contiene la fecha y hora del equipo en el que se está ejecutando la instancia de SQL Server. El ajuste de zona horaria está incluido.
+SQL Server obtiene los valores de fecha y hora utilizando la API de Windows GetSystemTimeAsFileTime(). La exactitud depende del hardware del equipo y de la versión de Windows en las que la instancia de SQL Server se esté ejecutando. La precisión de esta API se fija en 100 nanosegundos. La precisión se puede determinar mediante la API de Windows GetSystemTimeAdjustment().
