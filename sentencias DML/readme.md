@@ -42,13 +42,13 @@ En el ejemplo siguiente se muestran los distintos formatos que devuelven las fun
 ###### ,CURRENT_TIMESTAMP AS CURRENT_TIMESTAMP
 ###### ,GETDATE() AS GETDATE
 ###### ,GETUTCDATE() AS GETUTCDATE;
-###### **El conjunto de resultados es el siguiente.**
-###### *SYSDATETIME() 2007-04-30 13:10:02.0474381
-###### *SYSDATETIMEOFFSET()2007-04-30 13:10:02.0474381 -07:00
-###### *SYSUTCDATETIME() 2007-04-30 20:10:02.0474381
-###### *CURRENT_TIMESTAMP 2007-04-30 13:10:02.047
-###### *GETDATE() 2007-04-30 13:10:02.047
-###### *GETUTCDATE() 2007-04-30 20:10:02.047
+###### ** El conjunto de resultados es el siguiente. **
+###### * SYSDATETIME() 2007-04-30 13:10:02.0474381
+###### * SYSDATETIMEOFFSET()2007-04-30 13:10:02.0474381 -07:00
+###### * SYSUTCDATETIME() 2007-04-30 20:10:02.0474381
+###### * CURRENT_TIMESTAMP 2007-04-30 13:10:02.047
+###### * GETDATE() 2007-04-30 13:10:02.047
+###### * GETUTCDATE() 2007-04-30 20:10:02.047
 
 B.Convertir valores de fecha y hora en date
 En el ejemplo siguiente se muestra cómo convertir valores de fecha y hora en date.
