@@ -15,9 +15,9 @@ SYSDATETIME y SYSUTCDATETIME tienen más precisión de fracciones de segundo que
   ###### ,GETDATE()
   ###### ,GETUTCDATE();
 ###### **Que al ejecutar dichas funciones nos retornaria, por ejemplo:**
-> SYSDATETIME()      2007-04-30 13:10:02.0474381
-> SYSDATETIMEOFFSET()2007-04-30 13:10:02.0474381 -07:00
-    ###### SYSUTCDATETIME()   2007-04-30 20:10:02.0474381
+>SYSDATETIME()      2007-04-30 13:10:02.0474381
+>SYSDATETIMEOFFSET()2007-04-30 13:10:02.0474381 -07:00
+>SYSUTCDATETIME()   2007-04-30 20:10:02.0474381
     ###### CURRENT_TIMESTAMP  2007-04-30 13:10:02.047
     ###### GETDATE()          2007-04-30 13:10:02.047
     ###### GETUTCDATE()       2007-04-30 20:10:02.047
