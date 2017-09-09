@@ -2,6 +2,5 @@
 
 # Uso de fechas
 
-# Uso de Strings
 
 
