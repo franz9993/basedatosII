@@ -95,12 +95,126 @@ Esta función se puede enviar de forma remota a servidores SQL Server 2012 y pos
 ###### SELECT TIMEFROMPARTS ( 14, 23, 44, 500, 3 );
 ###### GO
 ###### El conjunto de resultados es el siguiente.
-######## ----------------
-14:23:44.5
-(1 row(s) affected)
-----------------
-14:23:44.50
-(1 row(s) affected)
-----------------
-14:23:44.500
-(1 row(s) affected)
+###### ----------------
+###### 14:23:44.5
+###### (1 row(s) affected)
+###### ----------------
+###### 14:23:44.50
+###### (1 row(s) affected)
+###### ----------------
+###### 14:23:44.500
+###### (1 row(s) affected)
+
+
+#### **TODATETIMEOFFSET (Transact-SQL)**
+Devuelve un valor de tipo datetimeoffset que se traduce a partir de una expresión datetime2.
+La expresión no puede ser del tipo text, ntext o image, ya que estos tipos no se pueden convertir implícitamente en varchar o nvarchar.
+* ###### **A.Cambiar el ajuste de zona horaria de la fecha y hora actuales**
+En el ejemplo siguiente se cambia el ajuste de zona horaria de la fecha y hora actuales a la zona horaria -07:00.
+###### DECLARE @todaysDateTime datetime2;
+###### SET @todaysDateTime = GETDATE();
+###### SELECT TODATETIMEOFFSET (@todaysDateTime, '-07:00');
+###### -- RETURNS 2007-08-30 15:51:34.7030000 -07:00
+* ###### **B.Cambiar el ajuste de zona horaria en minutos**
+En el ejemplo siguiente se cambia la zona horaria actual a -120 minutos.
+###### DECLARE @todaysDate datetime2;
+###### SET @todaysDate = GETDATE();
+###### SELECT TODATETIMEOFFSET (@todaysDate, -120);
+###### -- RETURNS 2007-08-30 15:52:37.8770000 -02:00
+* ###### **C.Agregar un ajuste de zona horaria de 13 horas**
+En el ejemplo siguiente se agrega un ajuste de zona horaria de 13 horas a una fecha y hora.
+###### DECLARE @dateTime datetimeoffset(7)= '2007-08-28 18:00:30';
+###### SELECT TODATETIMEOFFSET (@dateTime, '+13:00');
+###### -- RETURNS 2007-08-28 18:00:30.0000000 +13:00
+
+
+#### **YEAR (Transact-SQL)**
+Devuelve un entero que representa la parte del año de la date especificada.
+YEAR devuelve el mismo valor que DATEPART (year, date).
+Si date contiene únicamente una parte horaria, el valor devuelto es 1900, el año base.
+
+###### Ejemplos
+La siguiente instrucción devuelve 2007. Este número corresponde al año.
+SELECT YEAR('2007-04-30T01:01:01.1234567-07:00');
+
+###### La siguiente instrucción devuelve 1900, 1, 1. El argumento para date es el número 0. SQL Server interpreta 0 como 1 de enero de 1900.
+SELECT YEAR(0), MONTH(0), DAY(0);
+
+
+MONTH (Transact-SQL)
+Devuelve un entero que representa el mes de date especificado.
+MONTH devuelve el mismo valor que DATEPART (month, date).
+Si date contiene solo una parte horaria, el valor devuelto es 1, el mes base.
+Ejemplos
+La siguiente instrucción devuelve 4. Este número corresponde al mes.
+SELECT MONTH('2007-04-30T01:01:01.1234567 -07:00');
+
+La siguiente instrucción devuelve 1900, 1, 1. El argumento para date es el número 0. SQL Server interpreta 0 como 1 de enero de 1900.
+SELECT YEAR(0), MONTH(0), DAY(0);
+
+
+DAY (Transact-SQL)
+Devuelve un entero que representa el día (día del mes) de la date especificada.
+DAY devuelve el mismo valor que DATEPART (day, date).
+Si date contiene solo una parte horaria, el valor devuelto es 1, el día base.
+
+Ejemplos
+La siguiente instrucción devuelve 30. Este número corresponde al día.
+SELECT DAY('2007-04-30T01:01:01.1234567 -07:00');
+
+La siguiente instrucción devuelve 1900, 1, 1. El argumento para date es el número 0. SQL Server interpreta 0 como 1 de enero de 1900.
+SELECT YEAR(0), MONTH(0), DAY(0);
+
+
+GETDATE (Transact-SQL)
+Devuelve la marca de tiempo del sistema de base de datos actual como un valor datetime sin el ajuste de zona horaria de la base de datos. Este valor se deriva del sistema operativo del equipo donde la instancia de SQL Server se está ejecutando.
+SYSDATETIME y SYSUTCDATETIME tienen más precisión de fracciones de segundo que GETDATE y GETUTCDATE. SYSDATETIMEOFFSET incluye el ajuste de zona horaria del sistema. SYSDATETIME, SYSUTCDATETIME y SYSDATETIMEOFFSET pueden asignarse a una variable de cualquier tipo de fecha y hora.
+
+Ejemplos
+En los ejemplos siguientes se usan las seis funciones del sistema de SQL Server que devuelven la fecha y hora actuales para devolver la fecha, la hora o ambas. Los valores se devuelven en serie; por consiguiente, sus fracciones de segundo podrían ser diferentes.
+
+A.Obtener la fecha y hora actuales del sistema
+SELECT SYSDATETIME()
+    ,SYSDATETIMEOFFSET()
+    ,SYSUTCDATETIME()
+    ,CURRENT_TIMESTAMP
+    ,GETDATE()
+    ,GETUTCDATE();
+El conjunto de resultados es el siguiente.
+SYSDATETIME() 2007-04-30 13:10:02.0474381
+SYSDATETIMEOFFSET()2007-04-30 13:10:02.0474381 -07:00
+SYSUTCDATETIME() 2007-04-30 20:10:02.0474381
+CURRENT_TIMESTAMP 2007-04-30 13:10:02.047
+GETDATE() 2007-04-30 13:10:02.047
+GETUTCDATE() 2007-04-30 20:10:02.047
+
+B.Obtener la fecha actual del sistema
+SELECT CONVERT (date, SYSDATETIME())
+    ,CONVERT (date, SYSDATETIMEOFFSET())
+    ,CONVERT (date, SYSUTCDATETIME())
+    ,CONVERT (date, CURRENT_TIMESTAMP)
+    ,CONVERT (date, GETDATE())
+    ,CONVERT (date, GETUTCDATE());
+El conjunto de resultados es el siguiente.
+SYSDATETIME() 2007-05-03
+SYSDATETIMEOFFSET() 2007-05-03
+SYSUTCDATETIME() 2007-05-04
+CURRENT_TIMESTAMP 2007-05-03
+GETDATE() 2007-05-03
+GETUTCDATE() 2007-05-04
+
+C.Obtener la hora actual del sistema
+SELECT CONVERT (time, SYSDATETIME())
+    ,CONVERT (time, SYSDATETIMEOFFSET())
+    ,CONVERT (time, SYSUTCDATETIME())
+    ,CONVERT (time, CURRENT_TIMESTAMP)
+    ,CONVERT (time, GETDATE())
+    ,CONVERT (time, GETUTCDATE());
+El conjunto de resultados es el siguiente.
+SYSDATETIME() 13:18:45.3490361
+SYSDATETIMEOFFSET()13:18:45.3490361
+SYSUTCDATETIME() 20:18:45.3490361
+CURRENT_TIMESTAMP 13:18:45.3470000
+GETDATE() 13:18:45.3470000
+GETUTCDATE() 20:18:45.3470000
+
