@@ -1,4 +1,4 @@
-- # **SENTENCIAS BASICAS DML**
+# **SENTENCIAS BASICAS DML**
 ## **USO DE FECHAS**
 
 #### **Funciones que obtienen valores de fecha y hora del sistema**
@@ -7,8 +7,8 @@
 ##### EJEMPLOS:
 ##### **SYSDATETIME (Transact-SQL)**
 SYSDATETIME y SYSUTCDATETIME tienen más precisión de fracciones de segundo que GETDATE y GETUTCDATE. SYSDATETIMEOFFSET incluye el ajuste de zona horaria del sistema. SYSDATETIME, SYSUTCDATETIME y SYSDATETIMEOFFSET pueden asignarse a una variable de cualquier tipo de fecha y hora.
-###### **A.Obtener la fecha y hora actuales del sistema**
-###### SELECT SYSDATETIME() 
+- ###### **A.Obtener la fecha y hora actuales del sistema**
+ - ###### SELECT SYSDATETIME() 
 ###### ,SYSDATETIMEOFFSET()
 ###### ,SYSUTCDATETIME()
 ###### ,CURRENT_TIMESTAMP
