@@ -58,9 +58,9 @@ En el ejemplo siguiente se muestra cómo convertir valores de fecha y hora en da
 ###### ,CONVERT (date, GETDATE())
 ###### ,CONVERT (date, GETUTCDATE());
 ###### **El conjunto de resultados es el siguiente.**
-###### 2007-04-30 ###### 
-###### 2007-04-30 ###### 
-2007-04-30
-2007-04-30
-2007-04-30
-2007-04-30
+###### 2007-04-30  
+###### 2007-04-30  
+###### 2007-04-30
+###### 2007-04-30
+###### 2007-04-30
+###### 2007-04-30
